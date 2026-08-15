@@ -24,7 +24,9 @@ jobs:
         env:
           ORG_GRADLE_PROJECT_githubPackagesUsername: ${{ github.actor }}
           ORG_GRADLE_PROJECT_githubPackagesPassword: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew assembleRelease -PsignAsDebug --no-daemon
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleRelease -PsignAsDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v7
